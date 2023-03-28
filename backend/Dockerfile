@@ -24,8 +24,8 @@ RUN touch /var/www/html/storage/logs/laravel.log && \
         php artisan -q storage:link
 
 # create SQLite database
-RUN touch /var/www/database/data/database.sqlite
+RUN touch /var/www/html/database/data/database.sqlite
 
 # populate SQLite database
-php artisan migrate
-php artisan db:seed
+RUN php artisan migrate
+RUN php artisan db:seed
