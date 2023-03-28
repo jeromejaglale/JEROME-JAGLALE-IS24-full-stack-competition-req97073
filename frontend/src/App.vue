@@ -1,47 +1,63 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+// TODO
+</script>
+
+<script>
+import ProductList from './components/ProductList.vue'
+
+export default {
+    name: "app",
+    components: {},
+    data() {
+        return {
+            products: []
+        }
+    },
+    methods: {
+        async fetchData() {
+            const res = await fetch(`http://206.12.96.202:3000/api/products`)
+            this.products = await res.json()
+        },
+        addProduct(productName) {
+            console.log("Product added: " + productName);
+            // console.log("test: " + uniqueId('product-'))
+            // this.ToDoItems.push({id:uniqueId('todo-'), label: toDoLabel, done: false});
+
+            fetch('206.12.96.202:3000/api/products', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title: productName,
+                        body: productName,
+                        userId: 1,
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    // this.products.push(json)
+                    console.log(json)
+                    this.fetchData()
+                });
+
+        }
+    },
+    mounted() {
+        this.fetchData()
+    }
+
+};
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <TheWelcome />
+    <ProductList :products="products" />
+<!--     <TestTable />
+    <ProductForm @product-added="addProduct" />
+    <TableSample :products="products"/> -->
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
