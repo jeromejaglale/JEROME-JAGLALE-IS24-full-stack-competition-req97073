@@ -2,7 +2,11 @@ FROM php:8.1-apache
 
 # install zip, composer
 RUN apt-get update && \
+	apt-get install -y zip libzip-dev && \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# install PHP zip extension
+RUN docker-php-ext-install zip
 
 # setup Apache
 RUN a2dismod cgi
