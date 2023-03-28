@@ -28,6 +28,7 @@ RUN touch /var/www/html/storage/logs/laravel.log && \
         php artisan -q storage:link
 
 # create SQLite database
+RUN mkdir /var/www/html/database/data
 RUN touch /var/www/html/database/data/database.sqlite
 
 # populate SQLite database
