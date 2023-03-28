@@ -29,6 +29,18 @@ Route::post('/products', function (Request $request) {
 	return $product;
 });
 
+// PUT endpoint
+Route::put('/products/{product_id}', function ($product_id, Request $request) {
+	$product_data = $request->json()->all();
+
+	$product = Product::updateOrCreate(
+	    ['product_id' => $product_id],
+	    $product_data
+	);
+
+	return $product;
+});
+
 // DELETE endpoint
 Route::delete('/products/{product_id}', function ($product_id) {
 	$product = Product::where('product_id', $product_id)->first();
