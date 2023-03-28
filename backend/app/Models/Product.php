@@ -16,10 +16,13 @@ class Product extends Model
         'updated_at',
     ];
 
+    protected $fillable = ['product_id', 'product_name', 'product_owner_name', 'developers', 'scrum_master_name'];
+
     protected function developers(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => json_decode($value),
+            set: fn ($value) => json_encode($value),
         );
     }
 

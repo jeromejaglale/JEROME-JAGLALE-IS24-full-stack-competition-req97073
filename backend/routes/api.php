@@ -11,9 +11,22 @@ Route::get('/health', function () {
 	]);
 });
 
-// GET endpoint
+// GET endpoints
 Route::get('/products', function () {
 	return Product::all();
+});
+
+Route::get('/products/{product:product_id}', function (Product $product) {
+	return $product;
+});
+
+// POST endpoint
+Route::post('/products', function (Request $request) {
+	$product_data = $request->json()->all();
+
+	$product = Product::create($product_data);
+
+	return $product;
 });
 
 // DELETE endpoint
