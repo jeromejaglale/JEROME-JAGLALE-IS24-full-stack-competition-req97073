@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "@vue/compat": "^3.2.47",
+    "bootstrap-vue": "^2.23.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
