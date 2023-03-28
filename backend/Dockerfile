@@ -22,10 +22,9 @@ WORKDIR /var/www/html
 RUN composer install
 
 # setup Laravel
-RUN touch /var/www/html/storage/logs/laravel.log && \
-        cp .env.docker .env && \
-        php artisan key:generate && \
-        php artisan -q storage:link
+RUN cp .env.docker .env && \
+    php artisan key:generate && \
+    php artisan -q storage:link
 
 # create SQLite database
 RUN mkdir /var/www/html/database/data
