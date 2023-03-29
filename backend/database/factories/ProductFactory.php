@@ -21,6 +21,8 @@ class ProductFactory extends Factory
         for ($i=0; $i < rand(2, 5); $i++) { 
             $developers[] = fake()->name();
         }
+
+        $methodologies = ['Agile', 'Waterfall'];
         
         return [
             'product_id' => fake()->uuid(),
@@ -28,6 +30,8 @@ class ProductFactory extends Factory
             'product_owner_name' => fake()->name(),
             'developers' => json_encode($developers),
             'scrum_master_name' => fake()->name(),
+            'start_date' => fake()->date(),
+            'methodology' => fake()->randomElement($methodologies),
         ];
 
     }

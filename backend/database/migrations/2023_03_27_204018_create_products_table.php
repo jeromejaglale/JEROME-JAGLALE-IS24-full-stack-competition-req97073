@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('product_owner_name')->nullable();
             $table->text('developers')->nullable();
             $table->text('scrum_master_name')->nullable();
+            $table->date('start_date')->nullable();
+            $table->text('methodology')->nullable();
         });
     }
 

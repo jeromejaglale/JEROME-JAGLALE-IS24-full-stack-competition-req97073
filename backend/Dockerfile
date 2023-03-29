@@ -31,6 +31,7 @@ RUN touch /var/www/html/storage/logs/laravel.log && \
 # create SQLite database
 RUN mkdir /var/www/html/database/data
 RUN touch /var/www/html/database/data/database.sqlite
+RUN chmod 777 /var/www/html/database/data/database.sqlite
 
 # populate SQLite database
 RUN php artisan migrate
