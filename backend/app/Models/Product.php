@@ -16,7 +16,7 @@ class Product extends Model
         'updated_at',
     ];
 
-    protected $fillable = ['product_id', 'product_name', 'product_owner_name', 'developers', 'scrum_master_name'];
+    protected $fillable = ['product_id', 'product_name', 'product_owner_name', 'developers', 'scrum_master_name', 'start_date', 'methodology'];
 
     protected function developers(): Attribute
     {
