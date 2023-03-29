@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      product: null,
+      product:  {...this.defaultProduct},
     }
   },
   methods: {
@@ -24,12 +24,6 @@ export default {
           this.$emit("new-product", JSON.stringify(p));
           this.product = {...this.defaultProduct};
           this.product.developers = ['', '', '', '', ''];
-      }
-  },
-
-  created() {
-      if(this.product == null) {
-        this.product = {...this.defaultProduct};
       }
   }
 }
