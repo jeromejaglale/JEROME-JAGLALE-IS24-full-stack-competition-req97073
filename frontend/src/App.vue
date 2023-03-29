@@ -53,6 +53,7 @@ export default {
 
 <template>
   <main>
+    <p>Nb products: {{ products.length }}</p>
     <ProductList :products="products" />
 <!--     <TestTable />
     <ProductForm @product-added="addProduct" />
