@@ -6,18 +6,28 @@
 import ProductList from './components/ProductList.vue'
 import ProductForm from './components/ProductForm.vue'
 
+
 export default {
     name: "app",
     components: {},
     data() {
         return {
-            products: []
-        }
+            products: [],
+            defaultProduct: {
+              productId: '',
+              productName: '',
+              productOwnerName: '',
+              developers: ['', '', '', '', ''],
+              scrumMasterName: '',
+              startDate: '2023-04-01',
+              methodology: 'Agile'
+            }
+        };
     },
     methods: {
         async fetchData() {
-            const res = await fetch(`http://206.12.96.202:3000/api/products`)
-            this.products = await res.json()
+            const res = await fetch(`http://206.12.96.202:3000/api/products`);
+            this.products = await res.json();
         },
         addProduct(productJSON) {
           fetch('http://206.12.96.202:3000/api/products', {
@@ -30,12 +40,12 @@ export default {
               .then((response) => response.json())
               .then((json) => {
                   // refresh products table
-                  this.fetchData()
+                  this.fetchData();
               });
         }
     },
     mounted() {
-        this.fetchData()
+        this.fetchData();
     }
 };
 
@@ -43,7 +53,7 @@ export default {
 
 <template>
   <main>
-    <ProductForm @new-product="addProduct" />
+    <ProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
     <p>Nb products: {{ products.length }}</p>
     <ProductList :products="products" />
   </main>

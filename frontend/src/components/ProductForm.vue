@@ -2,42 +2,36 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export default {
-data() {
-        return {
-            product: null,
-            defaultProduct: {
-                productId: '',
-                productName: '',
-                productOwnerName: '',
-                developers: ['', '', '', '', ''],
-                scrumMasterName: '',
-                startDate: '2023-04-01',
-                methodology: 'Agile'
-            }
-        },
-    },
-
-    methods: {
-        submitForm() {
-            const p = {
-                product_id: uuidv4(),
-                product_name: this.product.productName,
-                product_owner_name: this.product.productOwnerName,
-                developers: this.product.developers.filter(developer => developer !== ''),
-                scrum_master_name: this.product.scrumMasterName,
-                start_date: this.product.startDate,
-                methodology: this.product.methodology
-            };
-            this.$emit("new-product", JSON.stringify(p));
-            this.product = this.defaultProduct;
-        }
-    },
-
-    mounted() {
-        if(product == null) {
-          this.product = this.defaultProduct
-        }
+  props: {
+    defaultProduct: Object
+  },
+  data() {
+    return {
+      product: null,
     }
+  },
+  methods: {
+      submitForm() {
+          const p = {
+              product_id: uuidv4(),
+              product_name: this.product.productName,
+              product_owner_name: this.product.productOwnerName,
+              developers: this.product.developers.filter(developer => developer !== ''),
+              scrum_master_name: this.product.scrumMasterName,
+              start_date: this.product.startDate,
+              methodology: this.product.methodology
+          };
+          this.$emit("new-product", JSON.stringify(p));
+          this.product = {...this.defaultProduct};
+          this.product.developers = ['', '', '', '', ''];
+      }
+  },
+
+  created() {
+      if(this.product == null) {
+        this.product = {...this.defaultProduct};
+      }
+  }
 }
 </script>
 
