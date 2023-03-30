@@ -10,14 +10,18 @@ export default {
 	          { key: 'scrum_master_name', label: 'Scrum Master'},
 	          { key: 'start_date', label: 'Start Date'},
 	          { key: 'methodology', label: 'Methodology'},
-	          { key: 'edit', label: '' },
-	          { key: 'delete', label: '' }
+	          { key: 'edit', label: '' }
 	        ]
       	}
     },
     props: {
         products: Array
-    }
+    },
+    methods: {
+      clickEdit(product_id) {
+	  	this.$emit("edit-product", product_id);
+      }
+  }
 }
 </script>
 
@@ -25,15 +29,8 @@ export default {
   	<h2>Product List</h2>
     <b-table striped :items="products" :fields="fields">
 		<template #cell(edit)="row">
-			<div class="text-nowrap">
-			<b-button size="sm">
+			<b-button size="sm" @click="clickEdit(row.item.product_id)">
 			   Edit
-			</b-button>
-			</div>
-		</template>
-		<template #cell(delete)="row">
-			<b-button size="sm">
-			   Delete
 			</b-button>
 		</template>
 	</b-table>
