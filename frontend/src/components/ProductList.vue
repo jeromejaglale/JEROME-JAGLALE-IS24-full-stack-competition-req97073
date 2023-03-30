@@ -3,13 +3,13 @@ export default {
     data() {
         return {
 	        fields: [
-	          { key: 'product_id', label: 'Id'},
 	          { key: 'product_name', label: 'Name'},
 	          { key: 'product_owner_name', label: 'Owner'},
 	          { key: 'developers', label: 'Developers'},
 	          { key: 'scrum_master_name', label: 'Scrum Master'},
 	          { key: 'start_date', label: 'Start Date'},
 	          { key: 'methodology', label: 'Methodology'},
+	          { key: 'product_id', label: 'ID'},
 	          { key: 'edit', label: '' }
 	        ]
       	}
@@ -26,12 +26,17 @@ export default {
 </script>
 
 <template>
-  	<h2>Product List</h2>
     <b-table striped :items="products" :fields="fields">
 		<template #cell(edit)="row">
 			<b-button v-b-modal.editProductModal size="sm" @click="clickEdit(row.item.product_id)">
 			   Edit
 			</b-button>
+		</template>
+		<template #cell(developers)="row">
+			{{ row.item.developers.filter(developer => developer != null).join(', ') }}
+		</template>
+		<template #cell(product_id)="row">
+			{{ row.item.product_id.substr(0, 10) }}..
 		</template>
 	</b-table>
 </template>
