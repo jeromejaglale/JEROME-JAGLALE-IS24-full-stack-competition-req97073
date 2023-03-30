@@ -23,17 +23,17 @@ export default {
           };
           this.$emit("new-product", JSON.stringify(p));
           this.product = JSON.parse(JSON.stringify(this.defaultProduct));
-          console.log(this.defaultProduct);
+          this.$bvModal.hide('addProduct');
       }
   }
 }
 </script>
 
 <template>
-  <b-modal id="addProduct" @ok="addProduct" title="Add a New Product" ok-title="Add Product" hide-header-close="true">
-    <form @submit.prevent="" class="product">
+  <b-modal ref="addProductModal" id="addProduct" @ok="addProduct" title="Add a New Product" ok-title="Add Product" hide-header-close="true" hide-footer="true">
+    <form class="product" @submit.prevent="addProduct">
       <label for="product_name">Product Name:</label>
-      <input type="text" id="product_name" v-model="product.productName" required>
+      <input type="text" id="product_name required" v-model="product.productName" required>
 
       <label for="product_owner_name">Product Owner Name:</label>
       <input type="text" id="product_owner_name" v-model="product.productOwnerName" required>
@@ -54,6 +54,10 @@ export default {
         <option>Agile</option>
         <option>Waterfall</option>
       </select>
+
+      <div class="modal_footer">
+        <b-button type="submit" variant="primary" @click="ok()">Add Product</b-button>
+      </div>
     </form>
   </b-modal>
 </template>

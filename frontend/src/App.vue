@@ -40,7 +40,7 @@ export default {
         },
         addProduct(productJSON) {
           try {
-            fetch('${this.API_BASE_URL}products', {
+            fetch(`${this.API_BASE_URL}products`, {
                     method: 'POST',
                     body: productJSON,
                     headers: {

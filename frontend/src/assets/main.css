@@ -29,3 +29,8 @@ form.product label {
 form.product input {
   width: 100%;
 }
+
+.modal_footer {
+  margin-top: 10px;
+  text-align: right;
+}
