@@ -4,6 +4,8 @@ import App from './App.vue'
 import './assets/main.css'
 
 import Vue from 'vue'
+Vue.config.silent = true
+
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Bootstrap and BootstrapVue CSS files
@@ -15,5 +17,6 @@ Vue.use(BootstrapVue)
 
 // BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
 
 createApp(App).mount('#app')
