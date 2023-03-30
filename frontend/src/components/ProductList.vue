@@ -3,13 +3,13 @@ export default {
     data() {
         return {
 	        fields: [
+	          { key: 'product_id', label: 'Number'},
 	          { key: 'product_name', label: 'Name'},
 	          { key: 'product_owner_name', label: 'Owner'},
 	          { key: 'developers', label: 'Developers'},
 	          { key: 'scrum_master_name', label: 'Scrum Master'},
 	          { key: 'start_date', label: 'Start Date'},
 	          { key: 'methodology', label: 'Methodology'},
-	          { key: 'product_id', label: 'ID'},
 	          { key: 'edit', label: '' }
 	        ]
       	}
@@ -36,7 +36,7 @@ export default {
 			{{ row.item.developers.filter(developer => developer != null).join(', ') }}
 		</template>
 		<template #cell(product_id)="row">
-			{{ row.item.product_id.substr(0, 10) }}..
+			<span :title="row.item.product_id">{{ row.item.product_id.substr(0, 15) }}..</span>
 		</template>
 	</b-table>
 </template>

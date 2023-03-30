@@ -33,14 +33,14 @@ export default {
   <b-modal id="addProduct" title="Add a New Product" ok-title="Add Product" hide-header-close="true" hide-footer="true">
     <form class="product" @submit.prevent="addProduct">
       <label for="product_name">Product Name:</label>
-      <input type="text" id="product_name required" v-model="product.productName" required>
+      <input type="text" id="product_name" v-model="product.productName" required>
 
       <label for="product_owner_name">Product Owner Name:</label>
       <input type="text" id="product_owner_name" v-model="product.productOwnerName" required>
 
       <label for="developers">Developers:</label>
       <div v-for="(developer, index) in product.developers" :key="index">
-        <input type="text" id="developers" v-model="product.developers[index]">
+        <input type="text" id="developers" v-model="product.developers[index]" :required="index == 0">
       </div>
 
       <label for="scrum_master_name">Scrum Master Name:</label>
