@@ -34,6 +34,7 @@ export default {
   methods: {
       editProduct() {
         this.$emit("save-product-changes", this.product);
+        this.$bvModal.hide('editProductModal');
       },
       resetModal() {
         this.product = null;
@@ -43,8 +44,8 @@ export default {
 </script>
 
 <template>
-  <b-modal id="editProductModal" @ok="editProduct" @hidden="resetModal" title="Edit Product" ok-title="Save Changes" hide-header-close="true">
-    <form @submit.prevent="" class="product">
+  <b-modal id="editProductModal" @hidden="resetModal" title="Edit Product" ok-title="Save Changes" hide-header-close="true" hide-footer="true">
+    <form @submit.prevent="editProduct" class="product">
       <label for="product_name">Product Name:</label>
       <input type="text" id="product_name" v-model="product.product_name" required>
 
@@ -64,6 +65,10 @@ export default {
         <option>Agile</option>
         <option>Waterfall</option>
       </select>
+
+      <div class="modal_footer">
+        <b-button type="submit" variant="primary" @click="ok()">Save Changes</b-button>
+      </div>
     </form>
   </b-modal>
 </template>
