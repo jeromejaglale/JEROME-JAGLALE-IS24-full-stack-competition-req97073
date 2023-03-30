@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'product_id' => fake()->uuid(),
             'product_name' => Str::title(fake()->words(3, true)),
             'product_owner_name' => fake()->name(),
-            'developers' => json_encode($developers),
+            'developers' => $developers,
             'scrum_master_name' => fake()->name(),
             'start_date' => fake()->date(),
             'methodology' => fake()->randomElement($methodologies),
