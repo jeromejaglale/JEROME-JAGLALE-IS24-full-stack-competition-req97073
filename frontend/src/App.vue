@@ -4,7 +4,7 @@
 
 <script>
 import ProductList from './components/ProductList.vue'
-import ProductForm from './components/ProductForm.vue'
+import AddProductForm from './components/AddProductForm.vue'
 import EditProductForm from './components/EditProductForm.vue'
 
 
@@ -84,7 +84,7 @@ export default {
 <template>
   <main>
     <EditProductForm v-if="currentProduct" :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
-    <ProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
+    <AddProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
     <p>Nb products: {{ products.length }}</p>
     <ProductList :products="products" @edit-product="editProduct" />
   </main>
