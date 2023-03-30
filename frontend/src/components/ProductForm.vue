@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      product:  {...this.defaultProduct},
+      product:  JSON.parse(JSON.stringify(this.defaultProduct)),
     }
   },
   methods: {
@@ -22,8 +22,8 @@ export default {
               methodology: this.product.methodology
           };
           this.$emit("new-product", JSON.stringify(p));
-          this.product = {...this.defaultProduct};
-          this.product.developers = ['', '', '', '', ''];
+          this.product = JSON.parse(JSON.stringify(this.defaultProduct));
+          console.log(this.defaultProduct);
       }
   }
 }

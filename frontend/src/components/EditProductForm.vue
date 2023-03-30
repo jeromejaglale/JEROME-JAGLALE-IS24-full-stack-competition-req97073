@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      product:  {...this.currentProduct},
+      product:  JSON.parse(JSON.stringify(this.currentProduct)),
     }
   },
   methods: {

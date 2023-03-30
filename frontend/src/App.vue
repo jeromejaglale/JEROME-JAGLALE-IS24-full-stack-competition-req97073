@@ -46,8 +46,14 @@ export default {
               });
         },
         async editProduct(productId) {
+          this.currentProduct = null;
           const res = await fetch(`http://206.12.96.202:3000/api/products/${productId}`);
           const p = await res.json();
+          // pad developers array to always have 5 text fields
+          const nbEmptyFields = 5 - p.developers.length;
+          for (var i = 0; i < nbEmptyFields; i++) {
+            p.developers.push('');
+          };
           this.currentProduct = p;
         },
         async saveProductChanges(product) {
@@ -78,7 +84,7 @@ export default {
 <template>
   <main>
     <EditProductForm v-if="currentProduct" :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
-    <!-- <ProductForm :defaultProduct="defaultProduct" @new-product="addProduct" /> -->
+    <ProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
     <p>Nb products: {{ products.length }}</p>
     <ProductList :products="products" @edit-product="editProduct" />
   </main>
