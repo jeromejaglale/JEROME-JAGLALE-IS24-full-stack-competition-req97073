@@ -12,5 +12,20 @@ table.table thead th {
   font-weight: bold;
 }
 
+p.infos {
+  margin-top: 25px;
+}
 
+.nb_products {
+  margin-right: 10px;
+}
 
+form.product label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form.product input {
+  width: 100%;
+}

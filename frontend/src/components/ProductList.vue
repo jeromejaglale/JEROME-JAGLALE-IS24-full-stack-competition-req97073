@@ -28,7 +28,7 @@ export default {
 <template>
     <b-table striped :items="products" :fields="fields">
 		<template #cell(edit)="row">
-			<b-button v-b-modal.editProductModal size="sm" @click="clickEdit(row.item.product_id)">
+			<b-button v-b-modal.editProductModal variant="primary" size="sm" @click="clickEdit(row.item.product_id)">
 			   Edit
 			</b-button>
 		</template>

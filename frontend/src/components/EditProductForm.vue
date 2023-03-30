@@ -44,7 +44,7 @@ export default {
 
 <template>
   <b-modal id="editProductModal" @ok="editProduct" @hidden="resetModal" title="Edit Product" ok-title="Save Changes" hide-header-close="true">
-    <form @submit.prevent="">
+    <form @submit.prevent="" class="product">
       <label for="product_name">Product Name:</label>
       <input type="text" id="product_name" v-model="product.product_name" required>
 

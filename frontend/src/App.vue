@@ -107,9 +107,9 @@ export default {
   <EditProductForm :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
 
   <h2>Product List</h2>
-  <p>
-    Number of products: {{ products.length }}
-    <b-button v-b-modal.addProduct>Add Product</b-button>
+  <p class="infos">
+    <span class="nb_products">Number of products: <strong>{{ products.length }}</strong></span>
+    <b-button v-b-modal.addProduct variant="primary" size="sm">Add a new product</b-button>
   </p>
   <ProductList :products="products" @edit-product="editProduct" />
   </main>
