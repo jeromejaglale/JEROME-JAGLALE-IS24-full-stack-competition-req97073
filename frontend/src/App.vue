@@ -49,18 +49,35 @@ export default {
           const res = await fetch(`http://206.12.96.202:3000/api/products/${productId}`);
           const p = await res.json();
           this.currentProduct = p;
+        },
+        async saveProductChanges(product) {
+          const productId = product.product_id;
+          fetch(`http://206.12.96.202:3000/api/products/${productId}`, {
+                  method: 'put',
+                  body: JSON.stringify(product),
+                  headers: {
+                      'Content-type': 'application/json; charset=UTF-8',
+                  },
+              })
+              .then((response) => response.json())
+              .then((json) => {
+                  // refresh products table
+                  this.fetchData();
+
+                  // close edit form
+                  this.currentProduct = null;
+              });
         }
     },
     mounted() {
         this.fetchData();
     }
 };
-
 </script>
 
 <template>
   <main>
-    <EditProductForm v-if="currentProduct" :currentProduct="currentProduct" />
+    <EditProductForm v-if="currentProduct" :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
     <!-- <ProductForm :defaultProduct="defaultProduct" @new-product="addProduct" /> -->
     <p>Nb products: {{ products.length }}</p>
     <ProductList :products="products" @edit-product="editProduct" />

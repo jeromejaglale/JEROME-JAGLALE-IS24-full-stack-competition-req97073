@@ -12,18 +12,7 @@ export default {
   },
   methods: {
       submitForm() {
-        console.log(this.product);
-          // const p = {
-          //     product_id: uuidv4(),
-          //     product_name: this.product.productName,
-          //     product_owner_name: this.product.productOwnerName,
-          //     developers: this.product.developers.filter(developer => developer !== ''),
-          //     scrum_master_name: this.product.scrumMasterName,
-          //     methodology: this.product.methodology
-          // };
-          // this.$emit("new-product", JSON.stringify(p));
-          // this.product = {...this.defaultProduct};
-          // this.product.developers = ['', '', '', '', ''];
+        this.$emit("save-product-changes", this.product);
       }
   }
 }
