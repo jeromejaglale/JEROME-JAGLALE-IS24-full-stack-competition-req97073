@@ -1,6 +1,4 @@
-# JEROME-JAGLALE-IS24-full-stack-competition-req97073
-
-## Deployment
+## Build and Run
 ### Backend
 ```
 cd backend
@@ -14,4 +12,4 @@ cd frontend
 npm install
 npm build
 ```
-Then put the the `dist` folder at the root of a web server.
+Put the generated `dist` folder at the root of a web server.
