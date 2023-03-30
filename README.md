@@ -7,11 +7,9 @@ sudo docker run -p 3000:80 -t jeromejaglale/backend:latest
 ```
 
 ### Frontend
-Required: node v17.9.1 or later
-
 ```
 cd frontend
-npm install
-npm run build
+sudo docker build -t jeromejaglale/frontend:latest .
+sudo docker run -p 8080:8080 -t jeromejaglale/frontend:latest
 ```
-Put the generated `dist` folder at the root of a web server.
+Go to http://localhost:8080
