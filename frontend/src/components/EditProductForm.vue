@@ -7,21 +7,44 @@ export default {
   },
   data() {
     return {
-      product:  JSON.parse(JSON.stringify(this.currentProduct)),
+      product: this.currentProduct != null ? JSON.parse(JSON.stringify(this.currentProduct)) : {
+              productId: '',
+              productName: '',
+              productOwnerName: '',
+              developers: ['', '', '', '', ''],
+              scrumMasterName: '',
+              startDate: '2023-04-01',
+              methodology: 'Agile'
+            },
+    }
+  },
+  watch: {
+    currentProduct() {
+      this.product = this.currentProduct != null ? JSON.parse(JSON.stringify(this.currentProduct)) : {
+              productId: '',
+              productName: '',
+              productOwnerName: '',
+              developers: ['', '', '', '', ''],
+              scrumMasterName: '',
+              startDate: '2023-04-01',
+              methodology: 'Agile'
+            };
     }
   },
   methods: {
-      submitForm() {
+      editProduct() {
         this.$emit("save-product-changes", this.product);
+      },
+      resetModal() {
+        this.product = null;
       }
   }
 }
 </script>
 
 <template>
-  <div>
-    <h2>Edit Product</h2>
-    <form @submit.prevent="submitForm">
+  <b-modal id="editProductModal" @ok="editProduct" @hidden="resetModal" title="Edit Product" ok-title="Save Changes" hide-header-close="true">
+    <form @submit.prevent="">
       <label for="product_name">Product Name:</label>
       <input type="text" id="product_name" v-model="product.product_name" required>
 
@@ -41,9 +64,7 @@ export default {
         <option>Agile</option>
         <option>Waterfall</option>
       </select>
-
-      <button type="submit">Save changes</button>
     </form>
-  </div>
+  </b-modal>
 </template>
 

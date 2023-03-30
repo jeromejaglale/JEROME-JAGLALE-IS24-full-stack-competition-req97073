@@ -100,10 +100,9 @@ export default {
 
 <template>
   <main>
-  <b-button v-b-modal.modal-1>Add Product</b-button>
+  <b-button v-b-modal.addProduct>Add Product</b-button>
   <AddProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
-  
-  <EditProductForm v-if="currentProduct" :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
+  <EditProductForm :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
 
   <p>Nb products: {{ products.length }}</p>
   <ProductList :products="products" @edit-product="editProduct" />

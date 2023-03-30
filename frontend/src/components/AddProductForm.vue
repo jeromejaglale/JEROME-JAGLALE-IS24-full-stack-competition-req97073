@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <b-modal id="modal-1" @ok="addProduct" title="Add Product" ok-title="Add Product" hide-header-close="true" >
+  <b-modal id="addProduct" @ok="addProduct" title="Add Product" ok-title="Add Product" hide-header-close="true">
     <form @submit.prevent="">
       <label for="product_name">Product Name:</label>
       <input type="text" id="product_name" v-model="product.productName" required>
