@@ -10,6 +10,6 @@ sudo docker run -p 3000:80 -t jeromejaglale/backend:latest
 ```
 cd frontend
 npm install
-npm build
+npm run build
 ```
 Put the generated `dist` folder at the root of a web server.
