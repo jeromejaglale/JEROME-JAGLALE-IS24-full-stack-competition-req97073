@@ -1,12 +1,11 @@
 <script setup>
-// setup
+defineProps({})
 </script>
 
 <script>
 import ProductList from './components/ProductList.vue'
 import AddProductForm from './components/AddProductForm.vue'
 import EditProductForm from './components/EditProductForm.vue'
-
 
 export default {
     name: "app",
@@ -86,8 +85,6 @@ export default {
                 .then((json) => {
                     // refresh products table
                     this.fetchData();
-
-                    // close edit form
                     this.currentProduct = null;
                 });
           } catch (error) {
@@ -103,13 +100,20 @@ export default {
 
 <template>
   <h2>IMB Products</h2>
+
   <p class="infos">
     <span class="nb_products">Number of products: <strong>{{ products.length }}</strong></span>
     <b-button v-b-modal.addProduct variant="primary" size="sm">Add a new product</b-button>
   </p>
+
   <ProductList :products="products" @edit-product="editProduct" />
-    <AddProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
+  
+  <!-- will appear in popup -->
+  <AddProductForm :defaultProduct="defaultProduct" @new-product="addProduct" />
+
+  <!-- will appear in popup -->
   <EditProductForm :currentProduct="currentProduct" @save-product-changes="saveProductChanges" />
+
 </template>
 
 
