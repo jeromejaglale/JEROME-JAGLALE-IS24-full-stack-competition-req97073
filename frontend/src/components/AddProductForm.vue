@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-      submitForm() {
+      addProduct() {
           const p = {
               product_id: uuidv4(),
               product_name: this.product.productName,
@@ -30,8 +30,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="submitForm">
+  <b-modal id="modal-1" @ok="addProduct" title="Add Product" ok-title="Add Product" hide-header-close="true" >
+    <form @submit.prevent="">
       <label for="product_name">Product Name:</label>
       <input type="text" id="product_name" v-model="product.productName" required>
 
@@ -55,9 +55,7 @@ export default {
         <option>Agile</option>
         <option>Waterfall</option>
       </select>
-
-      <button type="submit">Add Product</button>
     </form>
-  </div>
+  </b-modal>
 </template>
 
