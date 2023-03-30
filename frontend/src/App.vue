@@ -28,51 +28,68 @@ export default {
     },
     methods: {
         async fetchData() {
+          try {
             const res = await fetch(`http://206.12.96.202:3000/api/products`);
             this.products = await res.json();
+          } catch (error) {
+            alert('Sorry, we could not retrieve the list of products. Please try again later.');
+          }
         },
         addProduct(productJSON) {
-          fetch('http://206.12.96.202:3000/api/products', {
-                  method: 'POST',
-                  body: productJSON,
-                  headers: {
-                      'Content-type': 'application/json; charset=UTF-8',
-                  },
-              })
-              .then((response) => response.json())
-              .then((json) => {
-                  // refresh products table
-                  this.fetchData();
-              });
+          try {
+            fetch('http://206.12.96.202:3000/api/products', {
+                    method: 'POST',
+                    body: productJSON,
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    // refresh products table
+                    this.fetchData();
+                });
+          } catch (error) {
+            alert('Sorry, we could not complete this operation. Please try again later.');
+          }
+
         },
         async editProduct(productId) {
           this.currentProduct = null;
-          const res = await fetch(`http://206.12.96.202:3000/api/products/${productId}`);
-          const p = await res.json();
-          // pad developers array to always have 5 text fields
-          const nbEmptyFields = 5 - p.developers.length;
-          for (var i = 0; i < nbEmptyFields; i++) {
-            p.developers.push('');
-          };
-          this.currentProduct = p;
+          try {
+            const res = await fetch(`http://206.12.96.202:3000/api/products/${productId}`);
+            const p = await res.json();
+            // pad developers array to always have 5 text fields
+            const nbEmptyFields = 5 - p.developers.length;
+            for (var i = 0; i < nbEmptyFields; i++) {
+              p.developers.push('');
+            };
+            this.currentProduct = p;
+          } catch (error) {
+            alert('Sorry, this operation could not be completed. Please try again later.');
+          }
         },
         async saveProductChanges(product) {
           const productId = product.product_id;
-          fetch(`http://206.12.96.202:3000/api/products/${productId}`, {
-                  method: 'put',
-                  body: JSON.stringify(product),
-                  headers: {
-                      'Content-type': 'application/json; charset=UTF-8',
-                  },
-              })
-              .then((response) => response.json())
-              .then((json) => {
-                  // refresh products table
-                  this.fetchData();
+          try {
+            fetch(`http://206.12.96.202:3000/api/products/${productId}`, {
+                    method: 'put',
+                    body: JSON.stringify(product),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    // refresh products table
+                    this.fetchData();
 
-                  // close edit form
-                  this.currentProduct = null;
-              });
+                    // close edit form
+                    this.currentProduct = null;
+                });
+          } catch (error) {
+            alert('Sorry, we could not complete this operation. Please try again later.');
+          }
         }
     },
     mounted() {
