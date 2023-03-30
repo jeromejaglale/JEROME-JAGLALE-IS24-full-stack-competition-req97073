@@ -7,6 +7,7 @@ sudo docker run -p 3000:80 -t jeromejaglale/backend:latest
 ```
 
 ### Frontend
+Required: node v17.9.1 or later
 ```
 cd frontend
 npm install
