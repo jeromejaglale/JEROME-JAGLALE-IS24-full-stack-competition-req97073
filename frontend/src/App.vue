@@ -12,7 +12,7 @@ export default {
     components: {},
     data() {
         return {
-            API_BASE_URL: 'http://206.12.96.202:3000/api/',
+            API_BASE_URL: 'http://localhost:3000/api/',
             products: [],
             defaultProduct: {
               productId: '',
