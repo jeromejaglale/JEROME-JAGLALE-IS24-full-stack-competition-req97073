@@ -41,7 +41,7 @@ Software stack: Apache, PHP (Laravel), SQLite
 - `PUT http://localhost:3000/api/products/:productId`-> update existing product. JSON example:
 ```
 {
-  "product_name": "Product X",
+  "product_name": "Product Y",
   "product_owner_name": "Scott Summers",
   "developers": [
     "Ororo Munroe",
