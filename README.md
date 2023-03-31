@@ -53,6 +53,7 @@ Software stack: Apache, PHP (Laravel), SQLite
 }
 ```
 - `DELETE http://localhost:3000/api/products/:productId`-> delete existing product.
+- `GET http://localhost:3000/api/api-docs` -> Swagger documentation
 
 ### Source code
 - entry points: `routes/api.php`
