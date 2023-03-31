@@ -7,6 +7,7 @@ sudo docker run -p 3000:80 -t jeromejaglale/backend:latest
 ```
 
 ### Frontend
+In another terminal:
 ```
 cd frontend
 sudo docker build -t jeromejaglale/frontend:latest .
