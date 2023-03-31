@@ -67,7 +67,7 @@ export default {
       </select>
 
       <div class="modal_footer">
-        <b-button type="submit" variant="primary" @click="ok()">Save Changes</b-button>
+        <b-button type="submit" variant="primary">Save Changes</b-button>
       </div>
     </form>
   </b-modal>

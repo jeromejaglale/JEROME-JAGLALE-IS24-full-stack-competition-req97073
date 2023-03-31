@@ -56,7 +56,7 @@ export default {
       </select>
 
       <div class="modal_footer">
-        <b-button type="submit" variant="primary" @click="ok()">Add Product</b-button>
+        <b-button type="submit" variant="primary">Add Product</b-button>
       </div>
     </form>
   </b-modal>
