@@ -40,4 +40,3 @@ export default {
 		</template>
 	</b-table>
 </template>
-

@@ -1,4 +1,4 @@
-<script setup>
+<script setup> 
 defineProps({})
 </script>
 
@@ -27,10 +27,8 @@ export default {
         };
     },
     methods: {
-        async fetchData() {
+        async fetchProducts() {
           try {
-            console.log(this.BASE_URL);
-
             const res = await fetch(`${this.API_BASE_URL}products`);
             this.products = await res.json();
           } catch (error) {
@@ -49,7 +47,7 @@ export default {
                 .then((response) => response.json())
                 .then((json) => {
                     // refresh products table
-                    this.fetchData();
+                    this.fetchProducts();
                 });
           } catch (error) {
             alert('Sorry, we could not complete this operation. Please try again later.');
@@ -84,7 +82,7 @@ export default {
                 .then((response) => response.json())
                 .then((json) => {
                     // refresh products table
-                    this.fetchData();
+                    this.fetchProducts();
                     this.currentProduct = null;
                 });
           } catch (error) {
@@ -93,7 +91,7 @@ export default {
         }
     },
     mounted() {
-        this.fetchData();
+        this.fetchProducts();
     }
 };
 </script>
@@ -102,7 +100,9 @@ export default {
   <h2>IMB Products</h2>
 
   <p class="infos">
-    <span class="nb_products">Number of products: <strong>{{ products.length }}</strong></span>
+    <span class="nb_products">
+      Number of products: <strong>{{ products.length }}</strong>
+    </span>
     <b-button v-b-modal.addProduct variant="primary" size="sm">Add a new product</b-button>
   </p>
 
