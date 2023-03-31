@@ -51,3 +51,8 @@ Route::delete('/products/{product_id}', function ($product_id) {
 	
 	$product->delete();
 });
+
+// Swagger documentation
+Route::get('/api-docs', function () {
+	return view('swagger');
+});
