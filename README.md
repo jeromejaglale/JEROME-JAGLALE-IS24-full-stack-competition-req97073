@@ -19,7 +19,7 @@ Any questions? Contact me at jerome.jaglale@gmail.com.
 Thank you.
 
 ## Backend details
-Software stack: PHP (Laravel) and SQLite
+Software stack: Apache, PHP (Laravel), SQLite
 ### Entry points
 - `GET http://localhost:3000/api/products` -> list of products
 - `GET http://localhost:3000/api/products/:productId`-> product details
@@ -59,3 +59,10 @@ Software stack: PHP (Laravel) and SQLite
 - model class: `app/Models/Product.php`
 - product generator: database/factories/ProductFactory.php
 - the product generator is used when seeding the database, in `database/seeders/DatabaseSeeder.php`
+
+## Frontend details
+Software stack: Vue.js
+
+### Source code
+- main code: `src/App.vue`
+- components: `src/components`
