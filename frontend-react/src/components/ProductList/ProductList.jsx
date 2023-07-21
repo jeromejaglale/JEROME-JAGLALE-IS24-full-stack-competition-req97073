@@ -1,46 +1,42 @@
 import React from 'react';
+import useSWR from 'swr';
+
+async function fetcher(endpoint) {
+  const response = await fetch(endpoint);
+  const json = await response.json();
+  return json;
+}
 
 const ENDPOINT = 'https://fs.local/api/products';
 
 function ProductList() {
   // status: idle | loading | success | error
   const [status, setStatus] = React.useState('idle');
-  const [productList, setProductList] = React.useState([]);
+	const { data, isLoading, error } = useSWR(ENDPOINT, fetcher);
+  
+  console.log(error);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-   
-    setStatus('loading');
-   
-    const response = await fetch(ENDPOINT);
-    const json = await response.json();
-   
-    if (json) {
-      setStatus('success');
-      console.log(json);
-      setProductList(json);
-    } else {
-      setStatus('error');
-    }
-  }
-   
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="submit"></input>  
-      </form>
-     
-      {status === 'error' && (
-        <p>Something went wrong!</p>
+	    {isLoading && (
+		    <p>Loading products…</p>
+		  )}
+
+	    {error && (
+		    <p>Sorry, the products could not be retrieved.</p>
+		  )}
+
+			{data && (
+	      <>
+		      {data.length} products
+		      <ul>
+		        {data.map(product => 
+		          <li>{product.product_name}</li>
+		        )}
+		      </ul>
+	      </>
       )}
 
-      {productList.length} products
-
-      <ul>
-        {productList.map(product => 
-          <li>{product.product_name}</li>
-        )}
-      </ul>
     </>
   ); 
 }
