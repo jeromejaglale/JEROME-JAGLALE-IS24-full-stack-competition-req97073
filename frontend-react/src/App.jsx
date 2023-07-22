@@ -5,7 +5,8 @@ import ProductList from './components/ProductList';
 function App() {
   return (
     <>
-     <ProductList />
+      <h1>Product List</h1>
+      <ProductList />
     </>
   ); 
 }

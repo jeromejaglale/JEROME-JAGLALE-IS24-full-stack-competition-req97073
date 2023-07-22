@@ -4,6 +4,7 @@ import useSWR from 'swr';
 async function fetcher(endpoint) {
   const response = await fetch(endpoint);
   const json = await response.json();
+    console.log(json);
   return json;
 }
 
@@ -28,12 +29,33 @@ function ProductList() {
 
 			{data && (
 	      <>
-		      {data.length} products
-		      <ul>
-		        {data.map(product => 
-		          <li>{product.product_name}</li>
-		        )}
-		      </ul>
+		      <p><strong>{data.length} products</strong></p>
+		      <table>
+		      	<thead>
+		      		<tr>
+			      		<th>Id</th>
+			      		<th>Name</th>
+			      		<th>Owner</th>
+			      		<th>Developers</th>
+			      		<th>Scrum Master</th>
+			      		<th>Start Date</th>
+			      		<th>Methodology</th>
+			      		</tr>
+		      	</thead>
+		      	<tbody>
+		      		{data.map(product => 
+		          	<tr>
+		          		<td>{product.product_id}</td>
+		          		<td>{product.product_name}</td>
+		          		<td>{product.product_owner_name}</td>
+		          		<td>{product.developers.filter(developer => developer != null).join(', ')}</td>
+		          		<td>{product.scrum_master_name}</td>
+		          		<td>{product.start_date}</td>
+		          		<td>{product.methodology}</td>
+		          	</tr>
+		        	)}
+		      	</tbody>
+		      </table>
 	      </>
       )}
 
