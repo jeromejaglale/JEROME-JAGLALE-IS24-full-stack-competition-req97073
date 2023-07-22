@@ -44,7 +44,7 @@ function ProductList() {
 		      	</thead>
 		      	<tbody>
 		      		{data.map(product => 
-		          	<tr>
+		          	<tr key={product.product_id}>
 		          		<td>{product.product_id}</td>
 		          		<td>{product.product_name}</td>
 		          		<td>{product.product_owner_name}</td>
