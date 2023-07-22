@@ -4,7 +4,6 @@ import useSWR from 'swr';
 async function fetcher(endpoint) {
   const response = await fetch(endpoint);
   const json = await response.json();
-    console.log(json);
   return json;
 }
 
@@ -15,8 +14,6 @@ function ProductList() {
   const [status, setStatus] = React.useState('idle');
 	const { data, isLoading, error } = useSWR(ENDPOINT, fetcher);
   
-  console.log(error);
-
   return (
     <>
 	    {isLoading && (
