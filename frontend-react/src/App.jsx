@@ -7,6 +7,7 @@ function App() {
 
   return (
     <>
+      <h1>Add product</h1>
       <ProductForm />
 
       <h1>Product List</h1>

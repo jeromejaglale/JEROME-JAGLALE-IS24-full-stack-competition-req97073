@@ -3,3 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+label, input {
+  display: block;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+}

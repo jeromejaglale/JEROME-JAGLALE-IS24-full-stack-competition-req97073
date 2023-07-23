@@ -1,4 +1,8 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useSWRConfig } from 'swr';
+
+const ENDPOINT = 'https://fs.local/api/products';
 
 function ProductForm() {
   const [productName, setProductName] = React.useState('');
@@ -7,10 +11,31 @@ function ProductForm() {
   const [startDate, setStartDate] = React.useState('');
   const [methodology, setMethodology] = React.useState('');
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('form submitted');
-  }
+	const { mutate } = useSWRConfig()
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+	const data = {
+		product_id: uuidv4(),
+		product_name: productName,
+		product_owner_name: productOwnerName,
+		// developers: this.product.developers.filter(developer => developer !== ''),
+		developers: ['Dev 1'],
+		scrum_master_name: scrumMasterName,
+		start_date: startDate,
+		methodology: methodology
+	};
+
+	const response = await fetch(ENDPOINT, {
+	    method: 'POST',
+	    body: JSON.stringify(data),
+	  });
+	
+	const json = await response.json();
+	
+	mutate(ENDPOINT);
+}
 
   return (
     <>
