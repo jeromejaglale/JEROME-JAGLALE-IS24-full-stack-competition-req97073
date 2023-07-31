@@ -5,10 +5,16 @@ import ProductForm from './components/ProductForm';
 
 function App() {
 
+	const [showCreateProductForm, setShowCreateProductForm] = React.useState(false);
+
+	function toggleProductForm() {
+		setShowCreateProductForm(! showCreateProductForm);
+	}
+
   return (
     <>
-      <h1>Add product</h1>
-      <ProductForm />
+			<button onClick={toggleProductForm}>Create Product</button>    	
+      {showCreateProductForm && <ProductForm toggleProductForm={toggleProductForm} />}
 
       <h1>Product List</h1>
       <ProductList />

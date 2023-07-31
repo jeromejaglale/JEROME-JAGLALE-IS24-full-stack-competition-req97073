@@ -4,7 +4,7 @@ import { useSWRConfig } from 'swr';
 
 const ENDPOINT = 'https://fs.local/api/products';
 
-function ProductForm() {
+function ProductForm({toggleProductForm}) {
   const [productName, setProductName] = React.useState('');
   const [productOwnerName, setProductOwnerName] = React.useState('');
   const [scrumMasterName, setScrumMasterName] = React.useState('');
@@ -35,10 +35,12 @@ async function handleSubmit(e) {
 	const json = await response.json();
 	
 	mutate(ENDPOINT);
+  toggleProductForm();
 }
 
   return (
     <>
+    <h2>Add product</h2>
 	  <form onSubmit={handleSubmit}>
         <label htmlFor="product_name">Product Name:</label>
         <input type="text" id="product_name" value={productName} onChange={(e) => setProductName(e.target.value)} required />
