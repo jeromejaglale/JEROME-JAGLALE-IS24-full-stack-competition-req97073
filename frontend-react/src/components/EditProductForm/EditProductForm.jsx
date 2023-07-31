@@ -40,6 +40,9 @@ function EditProductForm({product, setShowEditProductForm}) {
 	  setShowEditProductForm(false);
 	}
 
+	function cancel() {
+	  setShowEditProductForm(false);
+	}
   return (
   	<>
 			<h2>Edit product</h2>
@@ -71,7 +74,10 @@ function EditProductForm({product, setShowEditProductForm}) {
 			      <option>Waterfall</option>
 			    </select>
 
-			    <input type="submit" value="Save" />
+	        <p>
+	          <button onClick={cancel}>Cancel</button>
+	           <input type="submit" value="Save" />
+	        </p>
 			  </form>
   	</>
   );

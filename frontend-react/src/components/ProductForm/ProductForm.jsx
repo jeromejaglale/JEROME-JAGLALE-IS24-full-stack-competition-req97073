@@ -13,30 +13,34 @@ function ProductForm({toggleProductForm}) {
 
 	const { mutate } = useSWRConfig()
 
-async function handleSubmit(e) {
-  e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-	const data = {
-		product_id: uuidv4(),
-		product_name: productName,
-		product_owner_name: productOwnerName,
-		// developers: this.product.developers.filter(developer => developer !== ''),
-		developers: ['Dev 1'],
-		scrum_master_name: scrumMasterName,
-		start_date: startDate,
-		methodology: methodology
-	};
+  	const data = {
+  		product_id: uuidv4(),
+  		product_name: productName,
+  		product_owner_name: productOwnerName,
+  		// developers: this.product.developers.filter(developer => developer !== ''),
+  		developers: ['Dev 1'],
+  		scrum_master_name: scrumMasterName,
+  		start_date: startDate,
+  		methodology: methodology
+  	};
 
-	const response = await fetch(ENDPOINT, {
-	    method: 'POST',
-	    body: JSON.stringify(data),
-	  });
-	
-	const json = await response.json();
-	
-	mutate(ENDPOINT);
-  toggleProductForm();
-}
+  	const response = await fetch(ENDPOINT, {
+  	    method: 'POST',
+  	    body: JSON.stringify(data),
+  	  });
+  	
+  	const json = await response.json();
+  	
+  	mutate(ENDPOINT);
+    toggleProductForm();
+  }
+
+  function cancel() {
+    toggleProductForm();
+  }
 
   return (
     <>
@@ -67,7 +71,10 @@ async function handleSubmit(e) {
           <option>Waterfall</option>
         </select>
 
-        <input type="submit" value="Add Product" />
+        <p>
+          <button onClick={cancel}>Cancel</button>
+          <input type="submit" value="Add Product" />
+        </p>
       </form>
     </>
   ); 
