@@ -9,7 +9,7 @@ async function fetcher(endpoint) {
 
 const ENDPOINT = 'https://fs.local/api/products';
 
-function ProductList() {
+function ProductList({showProductEditForm}) {
   // status: idle | loading | success | error
   const [status, setStatus] = React.useState('idle');
 	const { data, isLoading, error } = useSWR(ENDPOINT, fetcher);
@@ -37,7 +37,8 @@ function ProductList() {
 			      		<th>Scrum Master</th>
 			      		<th>Start Date</th>
 			      		<th>Methodology</th>
-			      		</tr>
+			      		<th></th>
+			      	</tr>
 		      	</thead>
 		      	<tbody>
 		      		{data.map(product => 
@@ -49,6 +50,7 @@ function ProductList() {
 		          		<td>{product.scrum_master_name}</td>
 		          		<td>{product.start_date}</td>
 		          		<td>{product.methodology}</td>
+		          		<td><button onClick={() => showProductEditForm(product.product_id)}>Edit</button></td>
 		          	</tr>
 		        	)}
 		      	</tbody>
